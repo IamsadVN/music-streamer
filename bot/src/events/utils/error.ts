@@ -8,6 +8,6 @@ export default class ErrorEvent extends Listener<Events.Error> {
     }
     
     public async execute(error: Error): Promise<void> {
-        Logger.error(error);
+        Logger.bot.error(error);
     }
 }

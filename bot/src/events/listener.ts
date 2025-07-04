@@ -1,5 +1,5 @@
 import { ClientEvents } from "discord.js";
-import { MusicStreamer } from "../index.js";
+import { MusicStreamer } from "../bot.js";
 
 type EventKey = keyof ClientEvents;
 

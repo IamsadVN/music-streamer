@@ -8,7 +8,7 @@ export default class Ready extends Listener<Events.ClientReady> {
     }
 
     public async execute(client: Client<true>) {
-        Logger.info(`Logged with name ${client.user.username}`);
+        Logger.bot.info(`Logged with name ${client.user.username}`);
 
         client.user.setPresence({
             status: "dnd"

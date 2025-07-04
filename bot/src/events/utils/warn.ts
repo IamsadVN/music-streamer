@@ -8,6 +8,6 @@ export default class WarnEvent extends Listener<Events.Warn> {
     }
 
     public async execute(message: string): Promise<void> {
-        Logger.warn(message);
+        Logger.bot.warn(message);
     }
 }
