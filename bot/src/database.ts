@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise";
-import { Logger } from "./utils/index.js";
+import { dbLogger } from "./utils/logger.js";
 
 const optionsPool: mysql.PoolOptions  = {
     host: process.env.DB_HOST,
@@ -15,9 +15,9 @@ const poolDatabase = mysql.createPool(optionsPool);
 try {
     const [result, rows] = await poolDatabase.execute("SHOW DATABASES;");
 
-    Logger.database.debug(result);
+    dbLogger.debug(result);
     
-    Logger.database.info(`Database connected to ${optionsPool.host}:${optionsPool.port} with user ${optionsPool.user}`);
+    dbLogger.info(`Database connected to ${optionsPool.host}:${optionsPool.port} with user ${optionsPool.user}`);
 }
 catch (err) {
     // Logger.database.error((err as Error));

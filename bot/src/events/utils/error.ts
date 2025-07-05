@@ -1,6 +1,6 @@
 import { Events } from "discord.js";
 import Listener from "../listener.js";
-import { Logger } from "../../utils/index.js";
+import { botLogger } from "../../utils/logger.js";
 
 export default class ErrorEvent extends Listener<Events.Error> {
     constructor() {
@@ -8,6 +8,6 @@ export default class ErrorEvent extends Listener<Events.Error> {
     }
     
     public async execute(error: Error): Promise<void> {
-        Logger.bot.error(error);
+        botLogger.error(error);
     }
 }

@@ -1,5 +1,6 @@
 import { Client, GatewayIntentBits } from "discord.js";
-import { getListeners, Logger } from "./utils/index.js";
+import { getListeners } from "./utils/loaders.js";
+import { botLogger } from "./utils/logger.js"; 
 
 export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready> {
     constructor() {
@@ -21,7 +22,7 @@ export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready
             this[method](listener.name, listener.execute!.bind(listener)); 
         }
         
-        Logger.bot.info(`Loaded ${(await getListeners()).length} events`);
+        botLogger.info(`Loaded ${(await getListeners()).length} events`);
 
         await this.login(process.env.BOT_TOKEN!);
     }

@@ -1,10 +1,10 @@
 import express from "express";
-import { Logger } from "./utils/index.js";
+import { apiLogger } from "./utils/logger.js";
 
 const app = express();
 
 
 
 app.listen(process.env.API_PORT, async () => {
-    Logger.api.info(`Server API is running on port ${process.env.API_PORT}`);
+    apiLogger.info(`Server API is running on port ${process.env.API_PORT}`);
 })
