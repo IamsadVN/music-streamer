@@ -10,14 +10,13 @@ function getTime(): string {
 }
 
 const warning = chalk.hex('#FFA500'); 
-
 export const Logger = {
     bot: {
         info: (msg: string) => {
             console.log(chalk.blue(`[${getTime()}]`),chalk.green("[INFO]"),chalk.green("[BOT]"),chalk.white(msg));
         },
         error: (msg: Error) => {
-            console.error(chalk.blue(`[${getTime()}]`),chalk.red("[ERROR]"),chalk.red("[BOT]"),chalk.red(msg));
+            console.error(chalk.blue(`[${getTime()}]`),chalk.red("[ERROR]"),chalk.red("[BOT]"),msg);
         },
         warn: (msg: string) => {
             console.log(chalk.blue(`[${getTime()}]`), warning("[WARN]"),warning("[BOT]"),warning(msg));
@@ -29,10 +28,22 @@ export const Logger = {
             console.log(chalk.blue(`[${getTime()}]`),chalk.green("[INFO]"),chalk.green("[API]"),chalk.white(msg));
         },
         error: (msg: Error) => {
-            console.error(chalk.blue(`[${getTime()}]`),chalk.red("[ERROR]"),chalk.red("[API]"),chalk.red(msg));
+            console.error(chalk.blue(`[${getTime()}]`),chalk.red("[ERROR]"),chalk.red("[API]"),msg);
         },
         warn: (msg: string) => {
             console.log(chalk.blue(`[${getTime()}]`), warning("[WARN]"),warning("[API]"),warning(msg));
+        }
+    },
+    database: {
+        info: (msg: string) => {
+            console.log(chalk.blue(`[${getTime()}]`),chalk.green("[INFO]"),chalk.green("[DB]"),chalk.white(msg));
+        },
+        error: (msg: Error) => {
+            console.error(chalk.blue(`[${getTime()}]`),chalk.red("[ERROR]"),chalk.red("[DB]"),msg);
+        },
+        debug: (msg: any) => {
+            if (process.env.DEBUG_MODE === "true")
+                console.log(chalk.blue(`[${getTime()}]`),chalk.green("[DEBUG]"),chalk.green("[DB]"), msg);
         }
     }
 }

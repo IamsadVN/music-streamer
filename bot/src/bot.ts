@@ -1,8 +1,5 @@
-import { Client, EmbedBuilder, GatewayIntentBits } from "discord.js";
-import { config } from "dotenv";
+import { Client, GatewayIntentBits } from "discord.js";
 import { getListeners, Logger } from "./utils/index.js";
-
-config();
 
 export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready> {
     constructor() {
@@ -21,9 +18,7 @@ export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready
 
             const method = listener.once ? "once" : "on";
 
-            this[method](listener.name, listener.execute!.bind(listener));
-
-            
+            this[method](listener.name, listener.execute!.bind(listener)); 
         }
         
         Logger.bot.info(`Loaded ${(await getListeners()).length} events`);
