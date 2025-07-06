@@ -1,4 +1,4 @@
-import mysql from "mysql2/promise";
+import mysql, { FieldPacket } from "mysql2/promise";
 import { dbLogger } from "./utils/logger.js";
 
 const optionsPool: mysql.PoolOptions  = {
@@ -12,16 +12,19 @@ const optionsPool: mysql.PoolOptions  = {
 
 const poolDatabase = mysql.createPool(optionsPool);
 
-try {
-    const [result, rows] = await poolDatabase.execute("SHOW DATABASES;");
+interface DatabaseResponse {
+    Database: string
+}
 
-    dbLogger.debug(result);
+try {
+    const [result, rows] = await poolDatabase.execute("SHOW DATABASES;") as unknown as [DatabaseResponse[],FieldPacket[]];
+
+    dbLogger.debug(result[0].Database);
     
-    dbLogger.info(`Database connected to ${optionsPool.host}:${optionsPool.port} with user ${optionsPool.user}`);
+    dbLogger.info(`Database connected to ${optionsPool.host}:${optionsPool.port} with user "${optionsPool.user}"`);
 }
 catch (err) {
-    // Logger.database.error((err as Error));
-    console.error(err);
+    dbLogger.error(err);
 }
 
 
