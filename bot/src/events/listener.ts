@@ -13,5 +13,5 @@ export default abstract class Listener<EventName extends EventKey = EventKey> {
         this.once = once;
     }
     
-    public async execute?(...args: ClientEvents[EventName]): Promise<void>
+    abstract execute(...args: ClientEvents[EventName]): Promise<void>
 }
