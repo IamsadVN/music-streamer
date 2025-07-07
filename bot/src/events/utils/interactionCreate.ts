@@ -1,9 +1,9 @@
-import { CacheType, Events, Interaction } from "discord.js";
+import { CacheType, Interaction } from "discord.js";
 import Listener from "../listener.js";
 
-export default class interactionCreate extends Listener<Events.InteractionCreate> {
+export default class interactionCreate extends Listener<"interactionCreate"> {
     constructor() {
-        super(Events.InteractionCreate);
+        super("interactionCreate");
     }
 
     public async execute(interaction: Interaction<CacheType>): Promise<void> {

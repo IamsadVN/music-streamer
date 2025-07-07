@@ -1,10 +1,10 @@
-import { ActivityType, Client, Events } from "discord.js";
+import { ActivityType, Client } from "discord.js";
 import Listener from "../listener.js";
 import { botLogger } from "../../utils/logger.js";
 
-export default class Ready extends Listener<Events.ClientReady> {
+export default class Ready extends Listener<"ready"> {
     constructor() {
-        super(Events.ClientReady, true);
+        super("ready", true);
     }
 
     public async execute(client: Client<true>) {
