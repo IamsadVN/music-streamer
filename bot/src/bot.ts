@@ -1,7 +1,9 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, Locale } from "discord.js";
 import { getCommands, getListeners } from "./utils/loaders.js";
 import { botLogger } from "./utils/logger.js"; 
 import CommandManager from "./managers/commandManager.js";
+import i18next from "i18next";
+import FsBackend, { FsBackendOptions } from "i18next-fs-backend";
 
 export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready> {
     public commands: CommandManager;
@@ -19,8 +21,27 @@ export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready
     }
 
     public async init() {
-        const listeners = await getListeners();
+        await i18next.use(FsBackend).init<FsBackendOptions>({
+            preload: [Locale.Vietnamese, Locale.EnglishUS],
+            fallbackLng: [Locale.Vietnamese],
+            supportedLngs: [Locale.Vietnamese, Locale.EnglishUS],
 
+            load: "all",
+            nonExplicitSupportedLngs: false,
+            saveMissing: true,
+            updateMissing: false,
+
+            backend: {
+                loadPath: "./locales/{{lng}}.json"
+            }
+        }, (error,t) => {
+            if (error) return botLogger.error(error);
+
+            botLogger.info(`Loaded translation for ${i18next.languages.join(", ")}`);
+            botLogger.debug(`Some key: "${t("commands.ping.slash.description", { lng: "vi" })}", "${t("commands.ping.slash.description", {lng: "en-US"})}"`);
+        });
+
+        const listeners = await getListeners();
         for (const listener of listeners) {
             listener.client = this as MusicStreamer<true>;
 

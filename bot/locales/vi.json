@@ -1,0 +1,97 @@
+{
+    "commands": {
+        "ping": {
+            "slash": {
+                "description": "Xem thời gian phản hồi của bot"
+            },
+            "embed": {
+                "title": "Các thông số về bot",
+                "fields": {
+                    "latency": "Độ trễ",
+                    "uptime": "Thời gian hoạt động"
+                }
+            }
+        },
+        "music": {
+            "slash": {
+                "description": "Các lệnh để tương tác với nhạc"
+            },
+            "subcommands": {
+                "play": {
+                    "slash": {
+                        "description": "Chơi 1 bài nhạc, bạn có muốn không?",
+                        "options": {
+                            "song": {
+                                "description": "Đưa bài nhạc bạn muốn chơi vào đây!"
+                            }
+                        }
+                    }
+                },
+                "pause": {
+                    "slash": {
+                        "description": "Tạm dừng bài nhạc đang chơi"
+                    }
+                },
+                "resume": {
+                    "slash": {
+                        "description": "Quay lại chơi nhạc tiếp cho bạn"
+                    }
+                },
+                "stop": {
+                    "slash": {
+                        "description": "Nhạc đang hay sao bạn lại dừng?"
+                    }
+                },
+                "skip": {
+                    "slash": {
+                        "description": "Bạn định tiến tới bài nhạc bạn yêu thích à?",
+                        "options": {
+                            "song": {
+                                "description": "Bạn muốn tiến đến bài nào trong hàng đợi?"
+                            }
+                        }
+                    }
+                },
+                "volumes": {
+                    "slash": {
+                        "description": "Điều chỉnh âm lượng bạn muốn nghe",
+                        "options": {
+                            "number": {
+                                "description": "Nhập âm lượng bạn muốn điều chỉnh"
+                            }
+                        }
+                    }
+                },
+                "loop": {
+                    "slash": {
+                        "description": "Sẽ cho bạn nghe dài dài về bài này!",
+                        "options": {
+                            "mode": {
+                                "description": "Chọn loại lặp lại mà bạn muốn",
+                                "choices": {
+                                    "track": "Track",
+                                    "queue": "Hàng đợi"
+                                }
+                            }
+                        }
+                    }
+                },
+                "lyrics": {
+                    "slash": {
+                        "description": "Tìm kiếm giúp bạn lời bài hát về bài đang nghe",
+                        "options": {
+                            "song": {
+                                "description": "Bạn muốn tìm bài hát nào?"
+                            }
+                        }
+                    }
+                },
+                "queue": {
+                    "slash": {
+                        "description": "Bạn còn nhiều bài chưa nghe trong hàng đợi lắm!"
+                    }
+                }
+            }
+        }
+    }
+}

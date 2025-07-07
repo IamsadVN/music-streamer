@@ -1,0 +1,97 @@
+{
+    "commands": {
+        "ping": {
+            "slash": {
+                "description": "Check the bot's response time"
+            },
+            "embed": {
+                "title": "Bot statistics",
+                "fields": {
+                    "latency": "Latency",
+                    "uptime": "Uptime"
+                }
+            }
+        },
+        "music": {
+            "slash": {
+                "description": "Commands to interact with music"
+            },
+            "subcommands": {
+                "play": {
+                    "slash": {
+                        "description": "Play a song, would you like to?",
+                        "options": {
+                            "song": {
+                                "description": "Enter the song you want to play here!"
+                            }
+                        }
+                    }
+                },
+                "pause": {
+                    "slash": {
+                        "description": "Pause the currently playing song"
+                    }
+                },
+                "resume": {
+                    "slash": {
+                        "description": "Resume playing music for you"
+                    }
+                },
+                "stop": {
+                    "slash": {
+                        "description": "Why stop when the music is good?"
+                    }
+                },
+                "skip": {
+                    "slash": {
+                        "description": "Are you going to skip to your favorite song?",
+                        "options": {
+                            "song": {
+                                "description": "Which song in the queue do you want to skip to?"
+                            }
+                        }
+                    }
+                },
+                "volumes": {
+                    "slash": {
+                        "description": "Adjust the volume you want to hear",
+                        "options": {
+                            "number": {
+                                "description": "Enter the volume you want to set"
+                            }
+                        }
+                    }
+                },
+                "loop": {
+                    "slash": {
+                        "description": "Let you listen to this song on repeat!",
+                        "options": {
+                            "mode": {
+                                "description": "Choose the repeat mode you want",
+                                "choices": {
+                                    "track": "Track",
+                                    "queue": "Queue"
+                                }
+                            }
+                        }
+                    }
+                },
+                "lyrics": {
+                    "slash": {
+                        "description": "Help you find the lyrics of the current song",
+                        "options": {
+                            "song": {
+                                "description": "Which song do you want to find lyrics for?"
+                            }
+                        }
+                    }
+                },
+                "queue": {
+                    "slash": {
+                        "description": "You still have many songs in the queue to listen to!"
+                    }
+                }
+            }
+        }
+    }
+}
