@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS guilds;
+CREATE DATABASE IF NOT EXISTS guilds;
+
+USE guilds;
+
+DROP TABLE IF EXISTS locales;
+
+CREATE TABLE locales(
+    guildID VARCHAR(23) NOT NULL,
+    localeCode VARCHAR(7) NOT NULL DEFAULT "vi",
+
+    PRIMARY KEY (guildID)
+)
