@@ -1,5 +1,6 @@
 import mysql, { FieldPacket } from "mysql2/promise";
 import { dbLogger } from "./utils/logger.js";
+import { DatabaseResponse } from "./types/query.js";
 
 const optionsPool: mysql.PoolOptions  = {
     host: process.env.DB_HOST,
@@ -12,14 +13,12 @@ const optionsPool: mysql.PoolOptions  = {
 
 const poolDatabase = mysql.createPool(optionsPool);
 
-interface DatabaseResponse {
-    Database: string
-}
+
 
 try {
     const [result, rows] = await poolDatabase.execute("SHOW DATABASES;") as unknown as [DatabaseResponse[],FieldPacket[]];
 
-    dbLogger.debug(result[0].Database);
+    dbLogger.debug(result);
     
     dbLogger.info(`Database connected to ${optionsPool.host}:${optionsPool.port} with user "${optionsPool.user}"`);
 }
