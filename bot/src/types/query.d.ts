@@ -4,5 +4,5 @@ export interface DatabaseResponse {
 
 export interface GuildRecord {
     serverID: string,
-    localCode: string
+    localeCode: string
 }

@@ -27,16 +27,23 @@ export async function guildLocaleCodeGet(guildID: string): Promise<GuildRecord[]
 
 }
 
-export async function guildLocaleCodeWrite(guildID: string, localCode: string): Promise<void> {
-    const [result] = await queryDatabase<void>(
+export async function guildLocaleCodeWrite(guildID: string, localeCode: string): Promise<void> {
+    await queryDatabase<void>(
         "INSERT INTO guilds.locales VALUES (?, ?)",
-        [guildID, localCode]
+        [guildID, localeCode]
     );
 }
 
 export async function guildLocaleCodeDelete(guildID:string): Promise<void> {
-    const [result] = await queryDatabase<void>(
+    await queryDatabase<void>(
         "DELETE FROM guilds.locales WHERE guildID = ?",
         [guildID]
+    );
+}
+
+export async function guildLocalCodeUpdate(guildID:string, localeCode: string): Promise<void> {
+    await queryDatabase<void>(
+        "UPDATE guilds.locales SET localeCode = ? WHERE guildID = ?",
+        [localeCode,guildID]
     );
 }
