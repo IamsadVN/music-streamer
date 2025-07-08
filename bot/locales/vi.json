@@ -12,6 +12,16 @@
                 }
             }
         },
+        "language": {
+            "slash": {
+                "description": "Bạn muốn bot nói chuyện với bạn bằng ngôn ngữ gì?",
+                "options": {
+                    "choice": {
+                        "description": "Chọn ngôn ngữ mà bạn muốn dùng"
+                    }
+                }
+            }
+        },
         "music": {
             "slash": {
                 "description": "Các lệnh để tương tác với nhạc"
