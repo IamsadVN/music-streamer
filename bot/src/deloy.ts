@@ -6,12 +6,10 @@ import {
     Routes,
     Locale
 } from "discord.js";
-import { config } from "dotenv";
 import { getCommands } from "./utils/loaders.js";
 import i18next from "i18next";
 import FsBackend, { FsBackendOptions } from "i18next-fs-backend";
-
-config();
+import configEnv from "./config.js";
 
 await i18next.use(FsBackend).init<FsBackendOptions>({
     preload: [Locale.Vietnamese, Locale.EnglishUS],
@@ -41,7 +39,7 @@ for (const command of await getCommands()) {
     }
 }
 
-const rest = new REST().setToken(process.env.BOT_TOKEN!);
+const rest = new REST().setToken(configEnv.botToken!);
 
 const user = (await rest.get(Routes.user())) as APIUser;
 

@@ -4,6 +4,7 @@ import { botLogger } from "./utils/logger.js";
 import CommandManager from "./managers/commandManager.js";
 import i18next from "i18next";
 import FsBackend, { FsBackendOptions } from "i18next-fs-backend";
+import configEnv from "./config.js";
 
 export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready> {
     public commands: CommandManager;
@@ -56,7 +57,7 @@ export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready
             this.commands.add(command);
         }
 
-        await this.login(process.env.BOT_TOKEN!);
+        await this.login(configEnv.botToken!);
     }
 
 }

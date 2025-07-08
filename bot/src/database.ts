@@ -1,30 +1,30 @@
 import mysql, { FieldPacket } from "mysql2/promise";
 import { dbLogger } from "./utils/logger.js";
 import { DatabaseResponse } from "./types/query.js";
+import configEnv from "./config.js";
 
 const optionsPool: mysql.PoolOptions  = {
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    user: process.env.DB_USER,
-    password: process.env.DB_PSWD,
+    host: configEnv.database.host,
+    port: configEnv.database.port,
+    user: configEnv.database.user,
+    password: configEnv.database.pswd,
     waitForConnections: true,
     connectionLimit: 4
 }
 
 const poolDatabase = mysql.createPool(optionsPool);
 
+export async function testConnection(): Promise<void> {
+    try {
+        const [result, rows] = await poolDatabase.execute("SHOW DATABASES;") as unknown as [DatabaseResponse[],FieldPacket[]];
 
-
-try {
-    const [result, rows] = await poolDatabase.execute("SHOW DATABASES;") as unknown as [DatabaseResponse[],FieldPacket[]];
-
-    dbLogger.debug(result);
-    
-    dbLogger.info(`Database connected to ${optionsPool.host}:${optionsPool.port} with user "${optionsPool.user}"`);
+        dbLogger.debug(result);
+        
+        dbLogger.info(`Database connected to ${optionsPool.host}:${optionsPool.port} with user "${optionsPool.user}"`);
+    }
+    catch (err) {
+        dbLogger.error(err);
+    }
 }
-catch (err) {
-    dbLogger.error(err);
-}
-
 
 export default poolDatabase;
