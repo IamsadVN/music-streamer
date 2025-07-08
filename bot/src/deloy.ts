@@ -1,8 +1,15 @@
-import { APIUser, REST, RESTPostAPIApplicationCommandsResult, Routes, Locale } from "discord.js";
+import {
+    APIUser,
+    REST,
+    RESTPostAPIApplicationCommandsResult,
+    RESTPostAPIApplicationCommandsJSONBody,
+    Routes,
+    Locale
+} from "discord.js";
 import { config } from "dotenv";
 import { getCommands } from "./utils/loaders.js";
 import i18next from "i18next";
-import FsBackend, {FsBackendOptions} from "i18next-fs-backend";
+import FsBackend, { FsBackendOptions } from "i18next-fs-backend";
 
 config();
 
@@ -19,14 +26,14 @@ await i18next.use(FsBackend).init<FsBackendOptions>({
     backend: {
         loadPath: "./locales/{{lng}}.json"
     }
-}, (error,t) => {
+}, (error, t) => {
     if (error) return console.error(error);
 
     console.log(`Loaded translation for ${i18next.languages.join(", ")}`);
 });
 
 
-const applicationCommands = [];
+const applicationCommands: RESTPostAPIApplicationCommandsJSONBody[] = [];
 
 for (const command of await getCommands()) {
     for (const data of command.applicationCommands) {

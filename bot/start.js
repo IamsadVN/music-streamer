@@ -34,7 +34,7 @@ exec("npx tsc", async (err,stdout,stderr) => {
         console.error(err);
         return;
     }
-    else if (stderr) {
+    if (stderr) {
         console.error(stderr);
         return;
     }
