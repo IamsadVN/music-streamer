@@ -13,8 +13,8 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(requestLogger);
 
-app.use("/", routers)
+app.use("/api", routers);
 
-app.listen(configEnv.apiPort, async () => {
+app.listen(configEnv.apiPort, () => {
     apiLogger.info(`Server API is running on port ${configEnv.apiPort}`);
 })

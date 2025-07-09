@@ -13,7 +13,9 @@ router.get("/:guildID", async (req,res) => {
         })
     }
     else {
-        res.status(200).json(guildsData);
+        res.status(200).json({
+            guildsData
+        })
     }
 });
 
