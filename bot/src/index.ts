@@ -1,20 +1,34 @@
-import { testConnection } from "./database.js";
+import client from "./bot.js";
+import poolDatabase, { testConnection } from "./database.js";
 
-process.on("SIGKILL", () => {
+async function clearBeforeExit(): Promise<void> {
+    try {
+        await client.destroy();
+        console.log(`Bot logoutted`);
+
+        await poolDatabase.end();
+        console.log(`Database disconnected`);
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
+process.on("SIGKILL", async () => {
     console.log(`Receive "SIGKILL" code, exiting...`);
-
+    await clearBeforeExit();
     process.exit(0);
 });
 
-process.on("SIGTERM", () => {
+process.on("SIGTERM", async () => {
     console.log(`Receive "SIGTERM" code, exiting...`);
-
+    await clearBeforeExit();
     process.exit(0);
 });
 
-process.on("SIGINT", () => {
-    console.log(`Receive "SIGINT code, exiting...`);
-
+process.on("SIGINT", async () => {
+    console.log(`Receive "SIGINT" code, exiting...`);
+    await clearBeforeExit();
     process.exit(0)
 });
 

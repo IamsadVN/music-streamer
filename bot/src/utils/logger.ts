@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import configEnv from "../config.js";
 
 function getTime(): string {
     const date = new Date();
@@ -25,7 +26,7 @@ class Logger {
         console.log(chalk.blue(`[${getTime()}]`), warning("[WARN]"), warning(this.loggerID), warning(...args));
     }
     public debug(...args: any[]): void {
-        if (process.env.DEBUG_MODE === "true")
+        if (configEnv.debugMode === "true")
             console.log(chalk.blue(`[${getTime()}]`), chalk.green("[DEBUG]"), chalk.green(this.loggerID), ...args);
     }
 }

@@ -65,3 +65,5 @@ export class MusicStreamer<Ready extends boolean = boolean> extends Client<Ready
 const client = new MusicStreamer();
 
 await client.init();
+
+export default client;
